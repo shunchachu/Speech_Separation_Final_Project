@@ -10,10 +10,14 @@ This project conducts an A/B test between two architectures:
 2. **Direction B (Temporal Gate):** Introduces a $1 \times 1$ Convolutional layer followed by a Sigmoid activation function to dynamically calculate a temporal gate $g^{(j)}$. This acts as a real-time "volume knob," selectively enhancing speech and suppressing noise at each time step.
 
 ## 📊 Experimental Setup
-- **Hardware:** NVIDIA A100 GPU
-- **Dataset:** 1/2 subset (~10GB) with fixed `random.seed(42)` for fair A/B testing.
-- **Hyperparameters:** `batch_size = 2`, `epochs = 10`, `num_workers = 4`.
-- **Optimization:** `cudnn.benchmark = True`, `pin_memory = True` for I/O acceleration.
+
+- **Hardware:** NVIDIA A100 GPU (Google Colab)
+- **Dataset:** 1/2 subset of the original dataset (~10GB). Fixed `random.seed(42)` ensures identical subsets for fair A/B testing.
+  - **Training Data (Train):** 8,640 utterances (approx. 9.6 hours of audio).
+  - **Validation Data (Dev):** ~1,440 utterances.
+- **Training Time:** ~23.36 minutes per epoch (Total ~3.9 hours for 10 epochs).
+- **Hyperparameters:** `batch_size = 2`, `epochs = 10`.
+- **Optimization:** `cudnn.benchmark = True`, `num_workers = 4`, and `pin_memory = True` for I/O acceleration.
 
 ## 🏆 Final Results
 
